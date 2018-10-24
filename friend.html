@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <link href="cursor.css" rel="stylesheet" type="text/css">
+        <style>
+            body {
+                background: #FFF;
+                color: #000;
+            }
+            ol li {
+                font-size: 24px;
+            }
+            a {
+                color: #000;
+            }
+        </style>
+        <script src="webOSjs-0.1.0/webOS.js" charset="utf-8"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div>
+            <h1 id="title">My Friend List</h1>
+            <div id="list"></h2>
+        </div>
+        <script type="text/javascript">
+            const KEY = "o.iREeAqnLv3dwXPcHtjSp8rWQfmWifoJH";
+            const URL = "https://api.pushbullet.com/v2/chats";
+            var fList = document.createElement("ol");
+
+            const aux = {
+                headers:{
+                    "Access-Token":KEY
+                },
+                method:"GET"
+            }
+
+            fetch(URL, aux)
+            .then(data=>{return data.json()})
+            .then(res=>{
+                for(var i = 0; i < res.chats.length; i++) {
+                    var entry = document.createElement("li");
+                    var link = document.createElement("a");
+
+                    link.appendChild(document.createTextNode(res.chats[i].with.name));
+                    link.setAttribute("href", "index.html");
+                    link.setAttribute("class", "pointer");
+                    entry.appendChild(link);
+                    fList.appendChild(entry);
+                }
+                document.getElementById("list").appendChild(fList);
+            })
+            .catch(error=>console.log(error))
+        </script>
+    </body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <link href="cursor.css" rel="stylesheet" type="text/css">
+        <style>
+            body {
+                text-align: center;
+                background: #FFF;
+                color: #000;
+                height: 100%;
+                width: 100%;
+                margin: 50% 0px;
+            }
+            a {
+                color: #000;
+                font-size: 24px;
+            }
+            p {
+                font-size: 24px;
+            }
+            Button {
+                font-size: 30px;
+            }
+            Button:hover {
+               color: #777;
+            }
+            Button:focus {
+                background-color: #777;
+            }
+        </style>
+        <script src="webOSjs-0.1.0/webOS.js" charset="utf-8"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <script type="text/javascript">
+            const client_ID = "gdhLhS6MyWlG3TxbWa16LY0C3iyQ7bsl";
+            const red_URI = "https://www.pushbullet.com/login-success";
+            const resp_type = "token";
+            var u = "https://www.pushbullet.com/authorize";
+
+            u += "?client_id=" + client_ID;
+            u += "&redirect_uri=" + red_URI;
+            u += "&response_type=" + resp_type;
+
+            function auth_redirect() {
+                var lunaReq =
+                    webOS.service.request("luna://com.webos.service.applicationmanager",
+                    {
+                        method:"launch",
+                        parameters:{
+                            "id":"com.webos.app.enactbrowser",
+                            "keepAlive":true,
+                            "params":{
+                                "cotentTarget":"http://www.sogang.ac.kr/index.do"
+                            }
+                        },
+                        onSuccess: function (args) {
+                            console.log(args);
+                        },
+                        onFailure: function (args) {
+                            console.log(args);
+                        }
+                    });
+            }
+
+        </script>
+    </head>
+    <body>
+        <div>
+            <h2 id="MY">Welcome to Pushbullet for webOS</h2>
+            <p>Click the below button to login</p>
+        </div>
+        <div>
+            <Button id="login" onClick="auth_redirect()">LOGIN</Button>
+        </div>
+        <div>
+            <object id="tt" type="text/html"></object>
+        </div>
+    </body>
+</html>

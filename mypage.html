@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <link href="cursor.css" rel="stylesheet" type="text/css">
+        <style>
+            body {
+                background: #FFF;
+                color: #000;
+                font-size: 24px;
+            }
+            a {
+                color: #000;
+            }
+            Button {
+                font-size: 30px;
+            Button:hover {
+                background-color: #777;
+            }
+        </style>
+        <script src="webOSjs-0.1.0/webOS.js" charset="utf-8"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <script type="text/javascript">
+            const client_ID = "gdhLhS6MyWlG3TxbWa16LY0C3iyQ7bsl";
+            const red_URI = "https%3A%2F%2Fwww.pushbullet.com%2Flogin-success";
+            const resp_type = "token";
+            // const KEY = "o.iREeAqnLv3dwXPcHtjSp8rWQfmWifoJH";
+            var u = "https://www.pushbullet.com/authorize";
+            u += "?client_id=" + client_ID;
+            u += "&redirect_uri=" + red_URI;
+            u += "&response_type=" + resp_type;
+            const URL = "https://www.pushbullet.com/authorize";
+
+            function auth_redirect() {
+                //console.log(u);
+                window.location.href = u;
+                //document.getElementById("tar").setAttribute("src", u);
+            }
+
+        </script>
+    </head>
+    <body>
+        <script language="javaScript">
+            function showChildURL(){
+                    //var win = window.open(u);
+                    console.log(window.location.hash);
+            }
+        </script>
+        <div>
+            <h1>WELCOME!</h1>
+        </div>
+    </body>
+</html>
